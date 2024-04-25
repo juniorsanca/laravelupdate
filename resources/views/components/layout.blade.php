@@ -16,6 +16,12 @@
         </style>
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-            <h1>Hello world !</h1>
+        <nav>
+            <x-nav-link href="/">Home</x-nav-link>
+            <x-nav-link  href="/about">About</x-nav-link>
+            <x-nav-link  href="contact">Contact</x-nav-link>
+        </nav>
+        {{-- <?php echo $slot ?> --}}
+        {{ $slot }}
     </body>
 </html>
