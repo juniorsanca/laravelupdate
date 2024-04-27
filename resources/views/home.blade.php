@@ -1,5 +1,6 @@
 <x-layout>
-    <h1>Hello world !</h1>
+    <x-slot:headings>
+        The home page
+    </x-slot:headings>
+    <h1>Hello Home !</h1>
 </x-layout>
-
-{{-- https://laracasts.com/series/30-days-to-learn-laravel-11/episodes/4 --}}
