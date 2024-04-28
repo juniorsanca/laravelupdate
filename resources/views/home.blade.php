@@ -2,5 +2,5 @@
     <x-slot:headings>
         The home page
     </x-slot:headings>
-    <h1>{{$key}} Hello {{$name}} !</h1>
+    <p>THis is the homepage</p>
 </x-layout>
