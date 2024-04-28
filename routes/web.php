@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        'key' => 'value',
+        'name' => 'junior sanca'
+        ]
+);
 });
 Route::get('/about', function () {
     return view('about');
