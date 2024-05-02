@@ -10,6 +10,10 @@
                 <strong>Poste</strong> : {{$job['title']}} - <strong>Salaire</strong> : {{$job['salary']}}</a>
             </div>
         @endforeach
+
+        <div>
+            {{ $jobs->links() }}
+        </div>
     </div>
 
 </x-layout>

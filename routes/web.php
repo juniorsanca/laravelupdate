@@ -12,8 +12,10 @@ Route::get('/jobs', function () {
     /*
         barryvdh/laravel-debugbar --dev (package on github)
         // replace the lazy loading
+
+        $jobs = Job::with('employer')->get();
     */
-    $jobs = Job::with('employer')->get();
+    $jobs = Job::with('employer')->paginate(3);
     return view('jobs', [
         'jobs' => $jobs
     ]);
