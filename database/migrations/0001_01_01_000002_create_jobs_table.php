@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            // $table->bigIncrements(('employer_id'));
+            $table->foreignIdFor(\App\Models\Employer::class);
             $table->string('title');
             $table->string('salary');
             $table->timestamps();

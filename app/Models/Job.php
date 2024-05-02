@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
-Class Job extends Model {
+
+class Job extends Model
+{
+    use HasFactory, Notifiable;
+
     protected $fillable = ['title', 'salary'];
 }
 
