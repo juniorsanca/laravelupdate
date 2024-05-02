@@ -9,13 +9,15 @@ Route::get('/', function () {
     // dd($jobs[0]->title);
 });
 Route::get('/jobs', function () {
-    /*
-        barryvdh/laravel-debugbar --dev (package on github)
-        // replace the lazy loading
+    // barryvdh/laravel-debugbar --dev (package on github)
+    // replace the lazy loading
 
-        $jobs = Job::with('employer')->get();
-    */
-    $jobs = Job::with('employer')->paginate(3);
+    // $jobs = Job::with('employer')->get();
+    // $jobs = Job::with('employer')->paginate(3);
+    // $jobs = Job::with('employer')->cursorPaginate(3);
+
+    $jobs = Job::with('employer')->simplePaginate(3);
+
     return view('jobs', [
         'jobs' => $jobs
     ]);

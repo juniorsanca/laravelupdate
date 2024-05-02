@@ -22,5 +22,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Model::preventLazyLoading();
+
+        /*
+            Change tailwind default paginator to bootstrap
+        */
+        //Paginator::useBootstrapFive();
+
     }
 }
