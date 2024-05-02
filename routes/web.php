@@ -8,9 +8,14 @@ Route::get('/', function () {
     // $jobs = Job::all();
     // dd($jobs[0]->title);
 });
-Route::get('/jobs', function (){
+Route::get('/jobs', function () {
+    /*
+        barryvdh/laravel-debugbar --dev (package on github)
+        // replace the lazy loading
+    */
+    $jobs = Job::with('employer')->get();
     return view('jobs', [
-        'jobs' => Job::all()
+        'jobs' => $jobs
     ]);
 });
 Route::get('/jobs/{id}', function ($id) {

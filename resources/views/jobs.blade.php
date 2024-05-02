@@ -2,8 +2,14 @@
      <x-slot:headings>
         Job Board
     </x-slot:headings>
-    @foreach ($jobs as $job )
-        <a href="/jobs/{{$job['id']}}">
-            <strong>Poste</strong> : {{$job['title']}} - <strong>Salaire</strong> : {{$job['salary']}}</a><br>
-    @endforeach
+    <div class="space-y-4">
+        @foreach ($jobs as $job )
+            <div>
+                <a href="/jobs/{{$job['id']}}" class="block px-4 py-6 border border-gray-200">
+                <p class="">{{$job->employer['name']}}</p>
+                <strong>Poste</strong> : {{$job['title']}} - <strong>Salaire</strong> : {{$job['salary']}}</a>
+            </div>
+        @endforeach
+    </div>
+
 </x-layout>
