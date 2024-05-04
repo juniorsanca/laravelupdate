@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Employer;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
@@ -28,7 +29,22 @@ Route::get('/jobs/create', function () {
 });
 
 Route::post('/jobs', function () {
-    dd('hello post');
+
+    /*-----> to verify what we are sending
+     ------> dd(request()->all());
+     ------> dd(request('title')->all());
+     ----*/
+
+     //validation...
+
+     Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1
+     ]);
+
+     return redirect('/jobs');
+
 });
 
 Route::get('/jobs/show/{id}', function ($id) {

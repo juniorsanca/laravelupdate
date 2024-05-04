@@ -11,7 +11,7 @@ class Job extends Model
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = ['title', 'salary'];
+    protected $fillable = ['title', 'salary', 'employer_id'];
 
     public function employer()
     {
