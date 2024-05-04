@@ -32,8 +32,13 @@
                 id="title"
                 autocomplete="title"
                 class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                placeholder="Développeur web">
+                placeholder="Développeur web"
+                required
+                >
             </div>
+            @error('title')
+                <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
+            @enderror
           </div>
         </div>
 
@@ -47,12 +52,26 @@
                 id="salary"
                 autocomplete="salary"
                 class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                placeholder="1200€">
+                placeholder="1200€"
+                required
+                >
             </div>
+            @error('salary')
+                <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
+            @enderror
           </div>
         </div>
-
-      </div><br>
+      </div>
+      {{-- <div class="mt-10">
+        @if($errors->any())
+            <ul>
+                @foreach($errors->all() as $error )
+                    <li class="text-red-500 italic">{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+      </div> --}}
+      <br>
     <div>
         <button
             type="submit"
