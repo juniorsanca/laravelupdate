@@ -75,20 +75,22 @@
             </ul>
         @endif
       </div> --}}
-      <br>
-    <div>
-        <button
-            href="/jobs"
-            type="submit"
-            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancel</button>
-    </div>
-    <div>
+      <div class="mt-6 flex items-center justify-between gap-x-6">
+        <div class="flex items-center">
+            <button form="delete-form" class="text-red-500 text-sm font-bold">Delete</button>
+        </div>
+        <div class="flex items-center gap-x-6">
+            <a href="/jobs/show/{{ $job->id }}" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
+        <div>
         <button
             type="submit"
             class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enregistrer</button>
-    </div>
+        </div>
     </div>
   </div>
 </form>
-
+<form method="post" id="delete-form" action="/jobs/{{ $job->id }}" class="hidden">
+    @csrf
+    @method('DELETE')
+</form>
 </x-layout>
