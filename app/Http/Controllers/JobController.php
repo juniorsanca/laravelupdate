@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Job;
 
@@ -22,11 +21,6 @@ class JobController extends Controller
         return view('jobs.create');
     }
 
-    public function show(Job $job)
-    {
-        return view('jobs.show', ['job' => $job]);
-    }
-
     public function store()
     {
         //validation...
@@ -41,6 +35,11 @@ class JobController extends Controller
             'employer_id' => 1
         ]);
         return redirect('/jobs');
+    }
+
+    public function show(Job $job)
+    {
+        return view('jobs.show', ['job' => $job]);
     }
 
     public function edit($id)
