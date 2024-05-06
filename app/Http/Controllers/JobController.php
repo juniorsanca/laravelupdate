@@ -59,7 +59,7 @@ class JobController extends Controller
             'title' => request('title'),
             'salary' => request('salary'),
         ]);
-        return redirect('/jobs/show/' . $job->id);
+        return redirect('/jobs/' . $job->id);
     }
 
     public function destroy(Job $job)
