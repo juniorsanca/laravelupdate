@@ -1,90 +1,60 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use App\Models\Employer;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
-/*--------[ HOME ]-------*/
-Route::get('/', function () {
-    return view('home');
-    // $jobs = Job::all();
-    // dd($jobs[0]->title);
-});
+Route::view('/', 'home');
 /*--------[ JOBS ]-------*/
-Route::get('/jobs', function () {
-    /*
-        barryvdh/laravel-debugbar --dev (package on github)
-        -> replace the lazy loading
-        -> $jobs = Job::with('employer')->get();
-        -> $jobs = Job::with('employer')->paginate(3);
-        -> $jobs = Job::with('employer')->cursorPaginate(3);
-    */
-    $jobs = Job::with('employer')->latest()->simplePaginate(3);
-    return view('jobs.index', [
-        'jobs' => $jobs
-    ]);
-});
+//without controller
+// Route::get('/jobs', function () {
+//     /*
+//         barryvdh/laravel-debugbar --dev (package on github)
+//         -> replace the lazy loading
+//         -> $jobs = Job::with('employer')->get();
+//         -> $jobs = Job::with('employer')->paginate(3);
+//         -> $jobs = Job::with('employer')->cursorPaginate(3);
+//     */
+//     $jobs = Job::with('employer')->latest()->simplePaginate(3);
+//     return view('jobs.index', [
+//         'jobs' => $jobs
+//     ]);
+// });
+//with controller
+Route::get('/jobs', [JobController::class,  'index']);
+
 /*--------[ CREATE FORM ]-------*/
-Route::get('/jobs/create', function () {
-    return view('jobs.create');
-});
+Route::get('/jobs/create', [JobController::class,  'create']);
+
 /*--------[ JOB ]-------*/
 // Route::get('/jobs/show/{id}', function ($id) {
 //     $job = Job::find($id);
 //     return view('jobs.show', ['job' => $job]);
 // });
-Route::get('/jobs/show/{job}', function (Job $job) {
-    return view('jobs.show', ['job' => $job]);
-});
+Route::get('/jobs/show/{job}', [JobController::class,  'show']);
+
 /*---------[ STORE ]--------*/
-Route::post('/jobs', function () {
-    /*
-        to verify what we are sending
-        dd(request()->all());
-        dd(request('title')->all());
-    */
-    //validation...
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required']
-    ]);
-    //create...
-    Job::create([
-        'title' => request('title'),
-        'salary' => request('salary'),
-        'employer_id' => 1
-     ]);
-     return redirect('/jobs');
-});
+Route::post('/jobs', [JobController::class,  'index']);
+
 /*---------[ EDIT ]--------*/
-Route::get('/jobs/edit/{id}', function ($id) {
-    $job = Job::find($id);
-    return view('jobs.edit', ['job' => $job]);
-});
+Route::get('/jobs/edit/{id}', [JobController::class,  'edit']);
+
 /*--------[ UPDATE ]-------*/
+    // validate
+    // authorize...
+    // and persist
+    // redirect to the job page
 /*
     Route::post('/jobs/update/{id}', function ($id) {
         $job = Job::find($id);
         return view('jobs.show', ['job' => $job]);
     });
  */
-Route::patch('/jobs/{id}', function ($id) {
-    // validate
-    // authorize...
-    // and persist
-    // redirect to the job page
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required']
-    ]);
-    $job = Job::findOrFail($id);
-    $job->update([
-        'title' => request('title'),
-        'salary' => request('salary'),
-    ]);
-    return redirect('/jobs/show/' . $job->id);
-});
+Route::patch('/jobs/{id}', [JobController::class,  'update']);
+
 /*--------[ DELETE ]-------*/
+/* Other way to write this */
 // Route::delete('/jobs/{id}', function ($id) {
 //     // authorize
 //     // delete the job
@@ -92,14 +62,9 @@ Route::patch('/jobs/{id}', function ($id) {
 //     Job::findOrFail($id)->delete();
 //     return redirect('/jobs');
 // });
-Route::delete('/jobs/{job}', function (Job $job) {
+/* Steps tot do this */
     // authorize
     // delete the job
     // redirect
-    $job->delete();
-    return redirect('/jobs');
-});
-/*--------[ CONTACT ]-------*/
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::delete('/jobs/{job}', [JobController::class,  'destroy']);
+Route::view('/contact', 'contact');
