@@ -4,12 +4,13 @@ use App\Models\Employer;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
+/*--------[ HOME ]-------*/
 Route::get('/', function () {
     return view('home');
     // $jobs = Job::all();
     // dd($jobs[0]->title);
 });
-//jobs
+/*--------[ JOBS ]-------*/
 Route::get('/jobs', function () {
     /*
         barryvdh/laravel-debugbar --dev (package on github)
@@ -23,16 +24,19 @@ Route::get('/jobs', function () {
         'jobs' => $jobs
     ]);
 });
-//create form
+/*--------[ CREATE FORM ]-------*/
 Route::get('/jobs/create', function () {
     return view('jobs.create');
 });
-//job
-Route::get('/jobs/show/{id}', function ($id) {
-    $job = Job::find($id);
+/*--------[ JOB ]-------*/
+// Route::get('/jobs/show/{id}', function ($id) {
+//     $job = Job::find($id);
+//     return view('jobs.show', ['job' => $job]);
+// });
+Route::get('/jobs/show/{job}', function (Job $job) {
     return view('jobs.show', ['job' => $job]);
 });
-//store
+/*---------[ STORE ]--------*/
 Route::post('/jobs', function () {
     /*
         to verify what we are sending
@@ -52,12 +56,12 @@ Route::post('/jobs', function () {
      ]);
      return redirect('/jobs');
 });
-//edit
+/*---------[ EDIT ]--------*/
 Route::get('/jobs/edit/{id}', function ($id) {
     $job = Job::find($id);
     return view('jobs.edit', ['job' => $job]);
 });
-//update
+/*--------[ UPDATE ]-------*/
 /*
     Route::post('/jobs/update/{id}', function ($id) {
         $job = Job::find($id);
@@ -80,15 +84,22 @@ Route::patch('/jobs/{id}', function ($id) {
     ]);
     return redirect('/jobs/show/' . $job->id);
 });
-//destroy
-Route::delete('/jobs/{id}', function ($id) {
+/*--------[ DELETE ]-------*/
+// Route::delete('/jobs/{id}', function ($id) {
+//     // authorize
+//     // delete the job
+//     // redirect
+//     Job::findOrFail($id)->delete();
+//     return redirect('/jobs');
+// });
+Route::delete('/jobs/{job}', function (Job $job) {
     // authorize
     // delete the job
     // redirect
-    Job::findOrFail($id)->delete();
+    $job->delete();
     return redirect('/jobs');
 });
-//contact
+/*--------[ CONTACT ]-------*/
 Route::get('/contact', function () {
     return view('contact');
 });
