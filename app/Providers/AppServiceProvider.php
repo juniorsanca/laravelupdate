@@ -26,9 +26,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Model::preventLazyLoading();
 
-        /*
-            Change tailwind default paginator to bootstrap
-        */
+        //Change tailwind default paginator to bootstrap
         //Paginator::useBootstrapFive();
 
         Gate::define('edit-job', function (User $user, Job $job) {
