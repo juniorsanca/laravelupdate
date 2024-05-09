@@ -8,7 +8,7 @@
         <p>
             Salaire du poste {{ $job['salary'] }}
         </p>
-        @can('edit-job', $job)
+        @can('edit', $job)
             <p>
                 <x-button href="/jobs/{{$job['id']}}/edit">Edit Job</x-button>
             </p>
