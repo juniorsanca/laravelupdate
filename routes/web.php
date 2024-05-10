@@ -5,9 +5,14 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionUserController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('test',function(){
-//     return 'Done';
-// });
+Route::get('test',function(){
+
+    dispatch(function(){
+
+        logger('hello from the queue');
+    })->delay(5);
+    return 'Done';
+});
 
 Route::view('/', 'home');
 Route::view('/contact', 'contact');

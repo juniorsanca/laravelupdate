@@ -12,9 +12,8 @@ class Job extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = ['title', 'salary', 'employer_id'];
-    /*
-    stop fillable ---> protected $guarded = [];
-    */
+    //stop fillable ---> protected $guarded = [];
+
     public function employer()
     {
         return $this->belongsTo(Employer::class);
