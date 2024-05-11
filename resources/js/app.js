@@ -1,3 +1,3 @@
 import './bootstrap';
-
-alert('hello world');
+import '../css/app.css';
+// alert('hello world');
