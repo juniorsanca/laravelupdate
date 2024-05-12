@@ -3,14 +3,14 @@
         Job
     </x-slot:headings>
         <h2>
-            Poste {{ $job['title'] }}
+            Poste {{ $job->title }}
         </h2>
         <p>
-            Salaire du poste {{ $job['salary'] }}
+            Salaire du poste - {{ $job->salary }}
         </p>
         @can('edit', $job)
             <p>
-                <x-button href="/jobs/{{$job['id']}}/edit">Edit Job</x-button>
+                <x-button href="/jobs/{{ $job->id }}/edit">Edit Job</x-button>
             </p>
         @endcan
 </x-layout>
